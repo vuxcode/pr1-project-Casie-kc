@@ -1,0 +1,85 @@
+<!-- adding dark mode -->
+<meta name="color-scheme" content="dark">
+
+<!-- adding a text box that the user will put their player name -->
+<input id="userinput" type="text">
+
+
+<!-- creating a button that is connected to and will run he function named "plyername", and the button text "Enter" -->
+<button onclick="playername()">Enter</button>
+
+ 
+
+<!--now create a button "play" with a ID, that will be connected to function named playbutton when clicked-->
+<button id="playbutton">Play</button >  
+ 
+ 
+
+<!--create button from 0-9 for the user to input number guess -->
+<button id ="button0">0</button> 
+<button id ="button1">1</button>
+<button id ="button2">2</button>
+<button id ="button3">3</button>
+<button id ="button4">4</button>
+<button id ="button5">5</button>
+<button id ="button6">6</button>
+<button id ="button7">7</button>
+<button id ="button8">8</button>
+<button id ="button9">9</button>
+
+
+<script>  
+
+//create a variable to find the playbutton element 
+var playButton = document.getElementById("playbutton");
+
+//hide the playbutton at the beginning 
+playButton.style.display = "none"; 
+
+//save them in browser 
+console.log(playerButton.value);
+
+
+
+//creat a variable array for button 0-9
+var numButton = ["button0", "button1", "button2", "button3", "button4", "button5", "button6", "button7", "button8", "button9"];
+
+//log them 
+console.log(numButton); 
+
+//hide the numButton for now 
+numButton.style.display = "none"; 
+
+
+
+//create a function for the playername
+function playername() {
+
+//create a variable for the playername   
+//and find the element that has ID "userinput"
+var userinput = document.getElementById("userinput"); 
+  
+//hide the text box after the player has written name in it
+userinput.style.display = "none"; 
+ 
+console.log(userinput.value);
+
+//give the output to the player    
+alert("Welcome, " + userinput.value + "!");   
+
+//show play button agian
+playButton.style.display = "block"; 
+}
+  
+
+
+//add the click event that will take to the playbutton function when clicked
+playButton.addEventListener("click", playbutton);
+ 
+//create the playbutton function
+function playbutton() {
+
+     
+     
+}
+</script> 

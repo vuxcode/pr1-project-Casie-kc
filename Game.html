@@ -245,22 +245,58 @@ guessBtn.addEventListener("click", function() {
 
     console.log("Guess submitted", ansBox.value); 
 
-    var guess = ansBox.vaule; 
+    //save it in a varaible 
+    var guessAns = ansBox.value; 
 
-    //give feeback 
-    var guess = giveFeedback (guess, secretNum); 
+    //give feedback 
+    var feedback = giveFeedback (guessAns, secretNum); 
+
+    //write output in the guess list container
+    guessList.innerHTML += "Your guess: " + guessAns + "  (Your have " + feedback.correctNumber + "number " + "& " + feedback.correctPosition + "."
+
+    console.log("Feedback", feedback); 
 
 
+    //if the player has guessed all correctly
+    if(feedback.correctPosition === 4) {
+        geuesslist.innerHTML += "Congratulations, you have guessed all correctly!"; 
 
-
-
-
-
-
+        //log it 
+        console.log("Player has got it"); 
+    }
+ 
 })
 
+
+
 //creating a function to give feedback
-function giveFeedback (guess, secretNum) {
+function giveFeedback (guessAns, secretNum) {
+
+    //first,converting number guess string into individual characters 
+    
+    /* make two empty array variables
+    one for to hold characters and one to hold converted these chacracters into numbers */  
+    var guessChar = [];
+    var guessArr  = []; 
+
+
+    //add each characters one by one into character array
+    for(var i = 0; i < guessAns.length; i++) {
+        //push each
+        guessChar.push(guessAns[i]);  
+    } 
+
+
+    //now convert each character into numbers & add into number array
+    for(var a = 0; a < guessChar.length; a++) {
+
+        //convert each to number now and save them in varaible 
+        var numVersion = Number(guessChar[a]); 
+        
+        //push them into number array
+        guessArr.push(numVersion); 
+    } 
+
 
     //creating variables to count the correct position and correct number
     //start at 0
@@ -271,7 +307,7 @@ function giveFeedback (guess, secretNum) {
     for (var i = 0; i < 4; i++){
 
         //if the digits guessed and hidden number's position'
-        if(guess[i] == secretNum[i]) {
+        if(guessArr[i] === secretNum[i]) {
         
         //add 1 for each correct position 
         correctPosition++;  
@@ -283,19 +319,34 @@ function giveFeedback (guess, secretNum) {
     //checking correct number 
     for (var a = 0; a < 4; a++) {
 
-         
+        if(guessArr[a] === secretNum[a]) {
+            //do nothing  
+        }
+        
+        else {
+            for(var b =0; b < 4; b++) {
 
-        //here we use "AND" operater so that only one condition is true
-        /* add includes to check if the number guessed are in the hidden number 
-        using Number() function to change string into numbers 
-        */
+            /* here we use "AND" operater bc noth condition must be true
+        1-check if the each number guessed is equal to one of the hidden number 
+        2-if a number is in a differnet position */ 
+        if(guessArr[a] === secretNum[b] && a !== b) {
 
-         
+            correctNumber++; 
+
+            //break out of the loop 
+            break;  
+        } 
     }
+        } 
+    } 
 
+    //return them to correct position and correct number 
+    return {correctPosition, correctNumber}; 
 } 
   
-
+//log them 
+console.log("Correct position", feedback.correctPosition); 
+console.log("Correct NUmber", feedback.correctNumber); 
  
  
  

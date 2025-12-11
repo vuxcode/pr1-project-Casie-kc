@@ -1,0 +1,162 @@
+<!-- adding dark mode -->
+<meta name="color-scheme" content="dark">
+
+<!-- adding a text box that the user will put their player name -->
+<input id="userinput" type="text">
+
+
+<!-- creating a button that is connected to and will run he function named "plyername", and the button text "Enter" -->
+<button onclick="playername()">Enter</button>
+
+ 
+
+<!--now create a button "play" with a ID, that will be connected to function named playbutton when clicked-->
+<button id="playbutton">Play</button >  
+ 
+ 
+
+<!--create button from 0-9 for the user to input number guess -->
+<button id ="button0">0</button> 
+<button id ="button1">1</button>
+<button id ="button2">2</button>
+<button id ="button3">3</button>
+<button id ="button4">4</button>
+<button id ="button5">5</button>
+<button id ="button6">6</button>
+<button id ="button7">7</button>
+<button id ="button8">8</button>
+<button id ="button9">9</button>
+
+
+
+<!-- creating 4 container/box that the player will put their each number that they guessed-->
+<div> </div>
+<script>  
+
+//create a variable to find the playbutton element 
+var playButton = document.getElementById("playbutton");
+
+//hide the playbutton at the beginning 
+playButton.style.display = "none"; 
+
+//save them in browser 
+console.log("This is to debug play button", playButton);
+
+
+
+//creat an empty variable array  
+var numButton = []; 
+ 
+// cerate loop to make array of button 0-9
+for(var index = 0; index <= 9; index++) {
+
+    //create a variable to find the button 0-9 element by adding "index"
+     var button09 = document.getElementById("button" + index);  
+
+     //hide the buttons for now
+     button09.style.display = "none";
+
+     //add button09 to numButton which was an empty array 
+     //so it becomes an array filled with button 0-9
+     numButton.push(button09); 
+}
+
+//log numButton in console
+console.log("This is for number buttons 0-9", numButton);
+  
+
+
+
+//create a function for the playername
+function playername() {
+
+//create a variable for the playername   
+//and find the element that has ID "userinput"
+var userinput = document.getElementById("userinput"); 
+  
+//hide the text box after the player has written name in it
+userinput.style.display = "none"; 
+ 
+console.log("Player's name (debug)", userinput.value);
+
+//give the output to the player    
+alert("Welcome, " + userinput.value + "!");   
+
+//show play button agian
+button09.style.display = "block"; 
+}
+  
+
+
+//add the click event that will take to the playbutton function when clicked
+playButton.addEventListener("click", playbutton);
+ 
+//create the playbutton function
+function playbutton() {
+
+     
+    //show the button 0-9 after play button is clicked
+    button09.style.display = "block";  
+}
+
+
+
+
+//creating 4 random digits (each wilth different value) 
+
+//cerate a function for the 4 random digits
+function randomhiddenNum () { 
+
+    //create an array variable for all possible digits
+    var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    //create an emppty array for the result 
+    var result = [];
+
+     
+    //create a for-loop to create 4 random digits
+    for (var i = 0; i < 4; i++) {
+        
+        //create a random digt and mutilply it number of elements in digits array 
+        //round down the random number to the next nearest interger
+        var createnum = Math.floor(Math.random() * digits.length);
+
+        //add it to the result array
+        result.push(digits[createnum]);
+
+        //splice will remove the used digits so it can't be picked again
+        digits.splice(createnum, 1);
+    }
+
+    //send the result array back to where the function was called
+    return result; 
+}
+
+  
+ //create a variable to store randomhiddennum  
+ var secretNum = randomhiddenNum();
+
+ //log it to console so we can debug it later if needed 
+ console.log("Secret number (debug)", secretNum);
+ 
+
+
+
+//add the click event that will take to the playbutton function when clicked
+playButton.addEventListener("click", playbutton);
+ 
+//create the playbutton function
+function playbutton() {
+
+     
+    //show the button 0-9 after play button is clicked
+    numButton.style.display = "block";  
+}
+
+
+
+
+</script> 
+
+ 
+

@@ -14,9 +14,9 @@
   
 
 <!-- creating a box for the player to put their answer -->
-<!--making it only able to read so the player willnot have access to type from keyboard-->>
+<!--making it only able to read so the player willnot have access to type from keyboard--> 
 <!--limit to max 4 numder --> 
-<input id="ansBox" readonly maxlength = 4>
+<input id="ansBox" readonly maxlength ="4">
 
 
 <!--create button from 0-9 for the user to input number guess -->
@@ -39,6 +39,13 @@
 
 <!--adding container to display guess and feeback history list-->
 <div id="guessList"></div>
+
+
+<!--adding congratulating container for winning-->
+<div id = "congratulating"></div>
+
+<!-- button to start a new game --> 
+<button id = "newGame">New Game</button> 
 
  
 <script>   
@@ -79,6 +86,16 @@ var guessList = document.getElementById("guessList");
 console.log("Guesses and feedbacks list:", guessList);  
 
 
+//creating a variable to gran the new game element 
+var newGame = document.getElementById("newGame"); 
+//log it 
+console.log("Start new game:" + newGame); 
+
+
+//variable to grab congratulating container element 
+var congratulating = document.getElementById("congratulating"); 
+//log it
+console.log("Congratulating the winning:", congratulating); 
 
  
 
@@ -93,6 +110,16 @@ guessBtn.style.display = "none";
 
 //hide the container displaying guess and feedback history list 
 guessList.style.display = "none"; 
+
+//hide the new game button
+newGame.style.display = "none"; 
+
+//hide the congratulating container
+congratulating.style.display = "none";  
+
+
+
+
 
 
 //using for-loop to create similar to array for button 0-9 
@@ -155,6 +182,9 @@ function playbutton() {
 
     //show the guess button
     guessBtn.style.display = "block";  
+
+    //show the container that will show the guess list 
+    guessList.style.display = "block"; 
 }
  
 
@@ -205,8 +235,8 @@ for (var i = 0; i < numButton.length; i++){
     
     //store in a variable to use in attaching an event listener 
     var button = numButton[i];  
-
-    button.addEventListener("click", function(){  
+    console.log("i is " + i) 
+    button.addEventListener("click", function(event){  
 
         //stop the program from adding more than 4 digits 
         if(ansBox.value.length >= 4){ 
@@ -214,8 +244,9 @@ for (var i = 0; i < numButton.length; i++){
             return; 
         } 
 
+        console.log(event.target.innerHTML);
         //update the number that the player clicked to the answer box 
-        ansBox.value += i;  
+        ansBox.value += event.target.innerHTML;  
  
         //if the answer is strictly equal to 4  
         if (ansBox.value.length === 4){ 
@@ -252,20 +283,33 @@ guessBtn.addEventListener("click", function() {
     var feedback = giveFeedback (guessAns, secretNum); 
 
     //write output in the guess list container
-    guessList.innerHTML += "Your guess: " + guessAns + "  (Your have " + feedback.correctNumber + "number " + "& " + feedback.correctPosition + "."
+    guessList.innerHTML += "Your guess: " + guessAns + "  (Your have " + feedback.correctNumber + " correct number " + "& " + feedback.correctPosition + " correct position.)"
 
     console.log("Feedback", feedback); 
 
 
     //if the player has guessed all correctly
     if(feedback.correctPosition === 4) {
-        geuesslist.innerHTML += "Congratulations, you have guessed all correctly!"; 
+        //display the congratulating container and congratulate
+        congratulating.style.display = "block"; 
+        congratulating.innerHTML += "Number; " + secretNum + " was the correct answer. Congratulations, you have guessed all correctly!";  
+
+        //disable the function after the player got the answer
+        guessBtn.disabled = true; 
 
         //log it 
         console.log("Player has got it"); 
+
+        //show the new game button
+        newGame.style.display = "block"; 
     }
+
+
+
+    //empty the answer box after clicking the guess button
+    ansBox.value = ""; 
  
-})
+}); 
 
 
 
@@ -340,18 +384,39 @@ function giveFeedback (guessAns, secretNum) {
         } 
     } 
 
+    //log them 
+    console.log("Correct position", correctPosition); 
+    console.log("Correct NUmber", correctNumber); 
     //return them to correct position and correct number 
     return {correctPosition, correctNumber}; 
 } 
   
-//log them 
-console.log("Correct position", feedback.correctPosition); 
-console.log("Correct NUmber", feedback.correctNumber); 
  
  
  
+//here is new game function that will start a new game when u clikc it
 
+newGame.addEventListener("click", function () {
 
+    //tell the computer to make a new hidden number
+    secretNum = randomhiddenNum(); 
+    //log it
+    console.log("New secret number:" + secretNum); 
+
+    //empty the guest list container 
+    guessList.innerHTML = ""; 
+
+    //empty the congratulating container  
+    congratulating.innerHTML = ""; 
+
+    //make from disable to able the guess button
+    guessBtn.disabled = false; 
+
+    //hide the reset button again
+    newGame.style.display = "none"; 
+})  
+
+  
 
 
 

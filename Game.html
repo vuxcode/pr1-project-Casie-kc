@@ -1,44 +1,72 @@
-<!-- adding dark mode -->
-<meta name="color-scheme" content="dark">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1><b>? ? ? ?</b></h1>
+<h2><b>BULLS & COWS</b></h2>  
 
+<div id="box1">
+    <p>Welcome to <b>BULLS & COWS!</b> </p>
+    <p>I have hidden a secret code of unique 4 number. With each guess, I will reveal <b>bulls</b> for <i>numbers placed where it belongs</i> and <b>cows</b> for <i>numbers that exist within the code.</i> You have unlimited time and unlimted attempts to explore the mystery.</p>
+    <p><b> Remember this warning:</b> every number appears only once - forget it and the code will deceive you.</p>
+
+</div>
+
+<p></p> 
+ 
+
+<div id="box2"> 
 <!-- adding a text box that the user will put their player name -->
-<input id="userinput" type="text">
+<input id="userinput" type="text" placeholder="Player's name">
  
 
 <!-- creating a button that is connected to and will run he function named "plyername", and the button text "Enter" -->
 <button id="enterBtn" onclick ="playername()">Enter</button>
+</div>  
  
 
 <!--now create a button "play" with a ID, that will be connected to function named playbutton when clicked-->
 <button id="playbutton">Play</button >  
   
 
+<div id="box3">     
 <!-- creating a box for the player to put their answer -->
 <!--making it only able to read so the player willnot have access to type from keyboard--> 
 <!--limit to max 4 numder --> 
 <input id="ansBox" readonly maxlength ="4">
 
 
-<!--create button from 0-9 for the user to input number guess -->
-<!--adding parameter in button number -->
-<button id ="button0">0</button> 
-<button id ="button1">1</button>
-<button id ="button2">2</button>
-<button id ="button3">3</button>
-<button id ="button4">4</button>
-<button id ="button5">5</button>
-<button id ="button6">6</button>
-<button id ="button7">7</button>
-<button id ="button8">8</button>
-<button id ="button9">9</button>
- 
-
 <!--add a button to submit answer-->
 <button id = "guessBtn">Guess</button>
+</div> 
 
-
+ 
+<div id="box4">
+<!--create button from 0-9 for the user to input number guess -->
+<!--adding parameter in button number -->
+<button class = "button" id ="button0">0</button> 
+<button class = "button" id ="button1">1</button>
+<button class = "button" id ="button2">2</button>
+<button class = "button" id ="button3">3</button> 
+<button class = "button" id ="button4">4</button>
+<button class = "button" id ="button5">5</button>
+<button class = "button" id ="button6">6</button>
+<button class = "button" id ="button7">7</button>
+<button class = "button" id ="button8">8</button>
+<button class = "button" id ="button9">9</button>
+</div>  
+ 
+ 
+<div id="box5"> 
 <!--adding container to display guess and feeback history list-->
 <div id="guessList"></div>
+<div id="feedbackhistory"></div>
+</div>
 
 
 <!--adding congratulating container for winning-->
@@ -46,6 +74,18 @@
 
 <!-- button to start a new game --> 
 <button id = "newGame">New Game</button> 
+
+<!--give up button-->
+<button id="giveUp">Give Up</button>
+
+<!--revealing the answer when the player give up-->
+<div id="revealAnswer"></div>
+
+
+</body>
+</html>
+
+
 
  
 <script>   
@@ -61,11 +101,11 @@ var userinput = document.getElementById("userinput");
 //log it 
 console.dir("This is userinput:", userinput); 
 
-
+ 
 //create a variable to find the playbutton element 
-var playButton = document.getElementById("playbutton"); 
+var playbutton = document.getElementById("playbutton"); 
 //save them in browser 
-console.log("This is to debug play button", playButton);
+console.log("This is to debug play button", playbutton);
    
 
 //create a variable to find the answer box element 
@@ -86,6 +126,12 @@ var guessList = document.getElementById("guessList");
 console.log("Guesses and feedbacks list:", guessList);  
 
 
+//creating a variable to grab the feedback history container
+var feedbackhistory = document.getElementById ("feedbackhistory"); 
+//log it
+console.log("Feedback history", feedbackhistory); 
+
+
 //creating a variable to gran the new game element 
 var newGame = document.getElementById("newGame"); 
 //log it 
@@ -97,10 +143,23 @@ var congratulating = document.getElementById("congratulating");
 //log it
 console.log("Congratulating the winning:", congratulating); 
 
+
+//save to grab give up button
+var giveUp = document.getElementById("giveUp");
+//log it 
+console.log("Give up:", giveUp); 
+
+
+//save to grab the revealing answer box
+var revealAnswer = document.getElementById("revealAnswer"); 
+//log it
+console.log("Reveal the answer:", revealAnswer);  
  
 
+
+
 //hide the playbutton at the beginning 
-playButton.style.display = "none"; 
+playbutton.style.display = "none"; 
  
 //hide the answer box 
 ansBox.style.display = "none"; 
@@ -111,15 +170,21 @@ guessBtn.style.display = "none";
 //hide the container displaying guess and feedback history list 
 guessList.style.display = "none"; 
 
+//hide the feedback history container 
+feedbackhistory.style.display = "none"; 
+
 //hide the new game button
 newGame.style.display = "none"; 
 
 //hide the congratulating container
 congratulating.style.display = "none";  
 
+//hide the give up button
+giveUp.style.display = "none"; 
 
-
-
+//hide the answer revealing box when the player give up
+revealAnswer.style.display = "none";   
+ 
 
 
 //using for-loop to create similar to array for button 0-9 
@@ -155,21 +220,26 @@ enterBtn.style.display = "none";
  
 
 console.log("Player's name (debug)", userinput.value);
-
+ 
 //give the output to the player    
-alert("Welcome, " + userinput.value + "!");   
+alert("Welcome, " + userinput.value + "!"); 
+ 
 
 //show play button agian
-playButton.style.display = "block"; 
+playbutton.style.display = "block"; 
 }
  
  
 
 //add the click event that will take to the playbutton function when clicked
-playButton.addEventListener("click", playbutton);
+playbutton.addEventListener("click", playButton);
  
 //create the playbutton function
-function playbutton() { 
+function playButton() { 
+
+    //hide the play button 
+    playbutton.style.display = "none"; 
+
     //for-looping them agian 
     for (var i=0; i< numButton.length; i++) {
 
@@ -185,6 +255,12 @@ function playbutton() {
 
     //show the container that will show the guess list 
     guessList.style.display = "block"; 
+
+    //show the feeback history container 
+    feedbackhistory.style.display = "block"; 
+
+    //show the give up button
+    giveUp.style.display = "block";   
 }
  
 
@@ -263,6 +339,15 @@ for (var i = 0; i < numButton.length; i++){
 }
  
 
+//creating a variable to count the try
+var attempt = 0;
+
+//grab the element 
+var count = document.getElementById("attempt"); 
+
+//log it 
+console.log("Counting attempt:" + count)
+
 
  //add the event listener to the guess button 
 guessBtn.addEventListener("click", function() {
@@ -276,6 +361,9 @@ guessBtn.addEventListener("click", function() {
 
     console.log("Guess submitted", ansBox.value); 
 
+    //add 1 for each attempt
+    attempt++; 
+
     //save it in a varaible 
     var guessAns = ansBox.value; 
 
@@ -283,7 +371,8 @@ guessBtn.addEventListener("click", function() {
     var feedback = giveFeedback (guessAns, secretNum); 
 
     //write output in the guess list container
-    guessList.innerHTML += "Your guess: " + guessAns + "  (Your have " + feedback.correctNumber + " correct number " + "& " + feedback.correctPosition + " correct position.)"
+    guessList.innerHTML += "<b>Your guess: </b>" + guessAns; 
+    feedbackhistory.innerHTML += feedback.correctPosition +" <b>bulls</b> " + "& " + feedback.correctNumber + " <b>cows.</b>"  
 
     console.log("Feedback", feedback); 
 
@@ -292,7 +381,8 @@ guessBtn.addEventListener("click", function() {
     if(feedback.correctPosition === 4) {
         //display the congratulating container and congratulate
         congratulating.style.display = "block"; 
-        congratulating.innerHTML += "Number; " + secretNum + " was the correct answer. Congratulations, you have guessed all correctly!";  
+        congratulating.innerHTML +=  "<b><i>Congratulations, you have guessed all correctly! </i></b>" + "<p></p>"+ "Number: " + secretNum + " was the correct answer." + "<p> </p>" + "Total attempt: " + attempt;  
+         
 
         //disable the function after the player got the answer
         guessBtn.disabled = true; 
@@ -302,6 +392,8 @@ guessBtn.addEventListener("click", function() {
 
         //show the new game button
         newGame.style.display = "block"; 
+
+        giveUp.style.display = "none"; 
     }
 
 
@@ -386,54 +478,62 @@ function giveFeedback (guessAns, secretNum) {
 
     //log them 
     console.log("Correct position", correctPosition); 
-    console.log("Correct NUmber", correctNumber); 
+    console.log("Correct Number", correctNumber); 
     //return them to correct position and correct number 
     return {correctPosition, correctNumber}; 
 } 
   
  
  
- 
-//here is new game function that will start a new game when u clikc it
+//show the answer and start the new game when the player clicks the give up button
+giveUp.addEventListener("click", function(){
 
-newGame.addEventListener("click", function () {
+    //show the answer box
+    revealAnswer.style.display = "block"; 
+
+    //reveal the answer
+    revealAnswer.innerHTML = "The answer was: " + secretNum;
+
+    //run the game function again
+    startNewGame(); 
+}); 
+
+//a new game when the player clicks new game button
+newGame.addEventListener("click", startNewGame);  
+ 
+//here is a function that will start a new game   
+function startNewGame() {
+
+    //log it
+    console.log("New game started"); 
 
     //tell the computer to make a new hidden number
     secretNum = randomhiddenNum(); 
     //log it
-    console.log("New secret number:" + secretNum); 
-
+    console.log("New secret number:", secretNum); 
+     
     //empty the guest list container 
-    guessList.innerHTML = ""; 
+    guessList.innerHTML = "";   
+
+    //empty the feeback container 
+    feedbackhistory.innerHTML = ""; 
 
     //empty the congratulating container  
     congratulating.innerHTML = ""; 
+
+    //turn the attempt to 0
+    attempt = 0; 
 
     //make from disable to able the guess button
     guessBtn.disabled = false; 
 
     //hide the reset button again
     newGame.style.display = "none"; 
-})  
 
-  
-
-
-
-
-
-
-
-
-
-
-
+    //display the give up button
+    giveUp.style.display = "block"; 
+}  
  
- 
-
-
-
-
 </script> 
 
  

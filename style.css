@@ -1,0 +1,152 @@
+body{
+    background-color:pink; 
+}
+
+h1{
+color: black;
+text-align: center; 
+font-size: 55px;
+text-shadow: 2.5px 3px 5px rgb(98, 96, 96);
+}
+ 
+
+h2{
+    text-align: center; 
+    margin-top: -50px;  
+    font-size: 30px;
+    text-shadow: 2.5px 3px 5px rgb(98, 96, 96); 
+} 
+ 
+
+#box1{
+    color: black;
+    background-color: pinkb(251, 249, 249);
+    width: 700px;
+    height: 190px;
+
+    border-style: solid;
+    border-right-width: 7px;
+    border-left-width: 2px;
+    border-bottom-width: 7px;
+    border-radius: 5px;
+    border-top-width: 2px;
+    
+    border-color: black(190, 181, 181); 
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-bottom: -15px; 
+     
+    margin-right: auto;
+    margin-left: auto;
+     
+}
+
+  
+#userinput{
+   width: 10%;  
+   font-size: 15px; 
+   border-style: none; 
+   border-color: black;  
+   padding: 5px 15px;  
+   border-radius: 3px;  
+}
+
+#userinput::placeholder{
+    color: pink; 
+}
+
+
+#box2{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; 
+}
+
+
+#enterBtn{ 
+    margin-left: 10px;
+    background-color: black; 
+    border-radius: 3px;
+    color: pink; 
+} 
+
+
+#playbutton{ 
+    background-color: black;
+    border-radius: 3px;
+    width: 70px;
+    height: 30px;
+    text-align: center; 
+    color: pink;
+    font-size: medium;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#box3{
+    display: flex;
+    justify-content: center;  
+}
+
+
+#guessBtn{ 
+    margin-left: 20px;
+    border-radius: 4px;
+    background-color: black;
+    color: pink;
+}
+
+
+#ansBox{
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    width: 100px;
+    font-size: larger;
+    font-style: bold;
+    text-align: center; 
+}
+
+#box4{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;  
+    gap: 5px;
+
+} 
+.button{
+    width: 30px; 
+    height: 30px;
+    font-style: bold;
+    background-color: black;
+    border-radius: 15px;  
+    border-style: bold;
+    color: pink;  
+}
+
+#box5{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 2%; 
+}
+
+#congratulating {
+    text-align: center;
+    padding-top: 30px; 
+    line-height: 1%;
+}
+
+#newGame{
+    background-color: black;
+    color: aliceblue;
+    font-style: bold;
+    margin: auto;  
+    margin-top: 3%;
+    width: 100px;
+    height: 30px; 
+    border-radius: 4px;
+    font-size: medium;
+}
+

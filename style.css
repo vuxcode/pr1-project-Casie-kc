@@ -95,6 +95,9 @@ h2{
     border-radius: 4px;
     background-color: black;
     color: pink;
+    width: 70px;
+    font-style: bold;
+    
 }
 
 
@@ -150,3 +153,32 @@ h2{
     font-size: medium;
 }
 
+#giveUp{
+    background-color: black;
+    color: pink;
+    margin-left: 15px;
+    border-radius: 4px;
+    width: 70px;
+    font-style: bold; 
+}
+
+#revealAnswer{
+    text-align: center;  
+    color: black;
+    padding-top: 30px; 
+    line-height: 1%;
+}
+
+
+#newgame1{
+    background-color: black;
+    color: aliceblue;
+    font-style: bold;
+    margin: auto;  
+    margin-top: 3%;
+    width: 100px;
+    height: 30px; 
+    border-radius: 4px;
+    font-size: medium;
+
+}

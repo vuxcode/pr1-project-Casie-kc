@@ -43,6 +43,9 @@
 
 <!--add a button to submit answer-->
 <button id = "guessBtn">Guess</button>
+
+<!--give up button-->
+<button id="giveUp">Give Up</button> 
 </div> 
 
  
@@ -74,14 +77,16 @@
 
 <!-- button to start a new game --> 
 <button id = "newGame">New Game</button> 
-
-<!--give up button-->
-<button id="giveUp">Give Up</button>
-
+ 
+ 
 <!--revealing the answer when the player give up-->
 <div id="revealAnswer"></div>
 
+<p></p>
 
+<!--another new game button-->
+<button id="newgame1">New Game</buttin> 
+    
 </body>
 </html>
 
@@ -138,6 +143,12 @@ var newGame = document.getElementById("newGame");
 console.log("Start new game:" + newGame); 
 
 
+//creating a variable to gran the new game element 
+var newgame1 = document.getElementById("newgame1"); 
+//log it 
+console.log("Start new game:" + newgame1); 
+
+
 //variable to grab congratulating container element 
 var congratulating = document.getElementById("congratulating"); 
 //log it
@@ -175,6 +186,9 @@ feedbackhistory.style.display = "none";
 
 //hide the new game button
 newGame.style.display = "none"; 
+
+//hide the new game button
+newgame1.style.display = "none"; 
 
 //hide the congratulating container
 congratulating.style.display = "none";  
@@ -488,15 +502,22 @@ function giveFeedback (guessAns, secretNum) {
 //show the answer and start the new game when the player clicks the give up button
 giveUp.addEventListener("click", function(){
 
+    //empty the answer box
+    ansBox.value = "";
+
+    //show the new game button
+    newgame1.style.display = "block"; 
+
     //show the answer box
     revealAnswer.style.display = "block"; 
 
     //reveal the answer
-    revealAnswer.innerHTML = "The answer was: " + secretNum;
+    revealAnswer.innerHTML = "The answer was: " + secretNum + "<p></p>" + "Don't give up — practice makes perfect!";  
+})
+     
 
-    //run the game function again
-    startNewGame(); 
-}); 
+    newgame1.addEventListener("click", startNewGame);
+
 
 //a new game when the player clicks new game button
 newGame.addEventListener("click", startNewGame);  
@@ -512,6 +533,10 @@ function startNewGame() {
     //log it
     console.log("New secret number:", secretNum); 
      
+    
+    //empty the answer box  
+    ansBox.value = ""; 
+ 
     //empty the guest list container 
     guessList.innerHTML = "";   
 
@@ -519,19 +544,26 @@ function startNewGame() {
     feedbackhistory.innerHTML = ""; 
 
     //empty the congratulating container  
-    congratulating.innerHTML = ""; 
+    congratulating.innerHTML = "";  
 
     //turn the attempt to 0
     attempt = 0; 
 
     //make from disable to able the guess button
     guessBtn.disabled = false; 
-
+ 
     //hide the reset button again
     newGame.style.display = "none"; 
 
     //display the give up button
     giveUp.style.display = "block"; 
+
+    //empty the reveal answer box
+    revealAnswer.style.display = ""; 
+
+    //hide the newgame1 button and revealtion of the answer
+    newgame1.style.display = "none";  
+    revealAnswer.style.display = "none"; 
 }  
  
 </script> 

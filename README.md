@@ -80,9 +80,13 @@ if(secretNum.includes(guessArr [a]));
 > Before the final submission date you should include a "PROJECT SUMMARY" in this section here.
 > Finishing 
 I also searched about css and watched many videos to style html so my game is designed to my liking. While I was trying to design my game, I came to learn many things about css as well which was very helpful in this lesson. Trying repeatedly and finding what is lacking and what needed to be fixed made me realized how detailed programming is. Like how a small detail can significantly affect your program or change everything.  During the process of testing and playing the game, every attempt and actions I had made are often accompanied by repeated work or mistakes while trying or identify and fix issues. In several cases, a single action in the game had to be added or adjusted in multiple parts of the code. On top of that, connecting lesson parts we had learned and making things work by adding these pieces can be complicating and confusing.  
-Later, I worked on details like fixing the answer box not emptying when you click give up button without admitting the answer. The answer remained full even after clicking new game button and we had to guess the answered that was filled so the answer box is empty again. Adding the give up button and attempt count.  
+Later, I worked on details like fixing the answer box not emptying when you click give up button without admitting the answer. The answer remained full even after clicking new game button and we had to guess the answered that was filled so the answer box is empty again. Adding the give up button and attempt count. I also put extra step such as inputting player's name and play button in the game.   
 
 # User Guide
 
 
 > Write a clear user guide for how someone should use your program.
+> The player can input their name and click the play button after. The computer will creat a secret code with 4 hidden number. The player has to guess what number the secret code it. The position of the numbers has to be correct too, for example the secret code is "1234" and the player has input is "1243". Then the player hasn't guessed correctly since 4 and 3 are in wrong order. The computer will give feedback by telling how many numbers you have guessed are correct and how many numbers you have guessed are in correct position. The computer will not be telling you which number is in right position or which number is included in the secret code.
+> One thing you have to remember is the secret code is unique number, which means the digits won't be repeated, for example "1123" is not possible since 1 is repeatlt in the secret code.
+> The feedback of how many correct positiona nd number the player has guessed are the clue of what the secret number is.    
+

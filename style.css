@@ -34,8 +34,7 @@ h2{
     border-color: black(190, 181, 181); 
     padding-left: 15px;
     padding-top: 5px;
-    padding-bottom: -15px; 
-     
+      
     margin-right: auto;
     margin-left: auto;
      
@@ -179,6 +178,5 @@ h2{
     width: 100px;
     height: 30px; 
     border-radius: 4px;
-    font-size: medium;
-
+    font-size: medium; 
 }

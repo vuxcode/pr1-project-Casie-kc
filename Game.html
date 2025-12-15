@@ -385,8 +385,8 @@ guessBtn.addEventListener("click", function() {
     var feedback = giveFeedback (guessAns, secretNum); 
 
     //write output in the guess list container
-    guessList.innerHTML += "<b>Your guess: </b>" + guessAns; 
-    feedbackhistory.innerHTML += feedback.correctPosition +" <b>bulls</b> " + "& " + feedback.correctNumber + " <b>cows.</b>"  
+    guessList.innerHTML += "<b>Your guess: </b>" + guessAns + "<br>";  
+    feedbackhistory.innerHTML += feedback.correctPosition +" <b>bulls</b> " + "& " + feedback.correctNumber + " <b>cows</b>" + "<br>";  
 
     console.log("Feedback", feedback); 
 
@@ -457,7 +457,7 @@ function giveFeedback (guessAns, secretNum) {
     for (var i = 0; i < 4; i++){
 
         //if the digits guessed and hidden number's position'
-        if(guessArr[i] === secretNum[i]) {
+        if(guessArr[i]===secretNum[i]) {
         
         //add 1 for each correct position 
         correctPosition++;  
@@ -469,34 +469,22 @@ function giveFeedback (guessAns, secretNum) {
     //checking correct number 
     for (var a = 0; a < 4; a++) {
 
-        if(guessArr[a] === secretNum[a]) {
-            //do nothing  
-        }
-        
-        else {
-            for(var b =0; b < 4; b++) {
-
-            /* here we use "AND" operater bc noth condition must be true
-        1-check if the each number guessed is equal to one of the hidden number 
-        2-if a number is in a differnet position */ 
-        if(guessArr[a] === secretNum[b] && a !== b) {
-
-            correctNumber++; 
-
-            //break out of the loop 
-            break;  
+        //if the hidden number includes the user's guessed number  
+        if(secretNum.includes(guessArr[a]))
+         
+            //add if it includes  
+            {correctNumber++;  
         } 
-    }
-        } 
+    
     } 
 
     //log them 
     console.log("Correct position", correctPosition); 
     console.log("Correct Number", correctNumber); 
+
     //return them to correct position and correct number 
-    return {correctPosition, correctNumber}; 
-} 
-  
+    return{correctPosition, correctNumber}; 
+}
  
  
 //show the answer and start the new game when the player clicks the give up button
